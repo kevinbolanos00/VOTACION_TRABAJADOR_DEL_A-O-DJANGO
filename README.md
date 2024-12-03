@@ -1,5 +1,8 @@
 # Sistema de Votación al Trabajador del Año
 
+![image](https://github.com/user-attachments/assets/6685fb81-3a74-4339-85b3-4e502e2aa146)
+
+
 Este proyecto está diseñado para una empresa en la cual el personal activo puede participar votando por el Trabajador del Año. A continuación, se describen los requisitos y las instrucciones para configurar y utilizar el sistema.
 
 ---
