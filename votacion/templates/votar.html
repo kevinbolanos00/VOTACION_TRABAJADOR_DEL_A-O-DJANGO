@@ -1,0 +1,339 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votación</title>
+    <!-- Importa Foundation CSS desde la carpeta static -->
+    <link rel="stylesheet" href="{% static 'css/foundation.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <script src="{% static 'foundation/js/foundation.min.js' %}"></script>
+    <style>
+        /* Estilo personalizado */
+        body {
+            background-color: #f4f4f9;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .grid-container {
+            padding-top: 30px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        .callout-group {
+            margin-bottom: 30px;
+        }
+
+        .callout {
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .callout.success {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .callout.alert {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .table-container {
+            margin-top: 30px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .table-container table {
+            width: 100%;
+        }
+
+        .table-container th, .table-container td {
+            text-align: center;
+        }
+
+        .button {
+            border-radius: 5px;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .form-container input {
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .form-container button {
+            width: 100%;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+
+
+
+
+
+        .buttonDownload {
+ display: inline-block;
+ position: relative;
+ padding: 10px 25px;
+ background-color: #4CC713;
+ color: white;
+ font-family: sans-serif;
+ text-decoration: none;
+ font-size: 0.9em;
+ text-align: center;
+ text-indent: 15px;
+ border: none;
+}
+
+.buttonDownload:hover {
+ background-color: #45a21a;
+ color: white;
+}
+
+.buttonDownload:before, .buttonDownload:after {
+ content: ' ';
+ display: block;
+ position: absolute;
+ left: 15px;
+ top: 52%;
+}
+
+.buttonDownload:before {
+ width: 10px;
+ height: 2px;
+ border-style: solid;
+ border-width: 0 2px 2px;
+}
+
+.buttonDownload:after {
+ width: 0;
+ height: 0;
+ margin-left: 3px;
+ margin-top: -7px;
+ border-style: solid;
+ border-width: 4px 4px 0 4px;
+ border-color: transparent;
+ border-top-color: inherit;
+ animation: downloadArrow 1s linear infinite;
+ animation-play-state: paused;
+}
+
+.buttonDownload:hover:before {
+ border-color: #cdefbd;
+}
+
+.buttonDownload:hover:after {
+ border-top-color: #cdefbd;
+ animation-play-state: running;
+}
+
+@keyframes downloadArrow {
+ 0% {
+  margin-top: -7px;
+  opacity: 1;
+ }
+
+ 0.001% {
+  margin-top: -15px;
+  opacity: 0.4;
+ }
+
+ 50% {
+  opacity: 1;
+ }
+
+ 100% {
+  margin-top: 0;
+  opacity: 0.4;
+ }
+}
+
+
+
+
+
+
+/* Estilo para el párrafo principal */
+.welcome-message {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2em;
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+    background-color: #f4f4f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Resaltar el nombre del votante */
+.welcome-message strong {
+    font-weight: bold;
+    color: #007BFF;
+}
+
+/* Estilo para los puntos (a, b, c, d) */
+.qualities-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 20px;
+    font-size: 1.1em;
+}
+
+.qualities-list li {
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.qualities-list li:before {
+    content: "✔";
+    color: #28a745; /* Verde para marcar las cualidades */
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* Estilo para el mensaje de agradecimiento */
+.thank-you {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #28a745;
+    margin-top: 30px;
+}
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <h1 class="text-center">Votación</h1>
+        
+    
+        <!-- Bloque para mostrar mensajes -->
+        {% if messages %}
+            <div class="callout-group">
+                {% for message in messages %}
+                    {% if message.tags == 'success' %}
+                        <div class="callout success">
+                    {% else %}
+                        <div class="callout alert">
+                    {% endif %}
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    
+        {% if votante %}
+        <p class="lead text-center welcome-message">
+            Bienvenido, <strong>{{ votante.nombre }}</strong>
+        </p>
+    
+        <p class="text-center">¡Tu Voto Cuenta!</p>
+    
+        <p class="text-center">A la hora de elegir al mejor trabajador, recuerda valorar las siguientes cualidades:</p>
+    
+        <ul class="qualities-list">
+            <li>a) Puntualidad: Reconoce a quienes siempre están a tiempo y cumplen con responsabilidad.</li>
+            <li>b) Eficiencia: Valora a quienes logran resultados excepcionales en su labor.</li>
+            <li>c) Compañerismo: Piensa en quienes fomentan un ambiente de apoyo y respeto.</li>
+            <li>d) Compromiso: Considera a quienes demuestran dedicación y lealtad hacia el equipo y la organización.</li>
+        </ul>
+    
+        <p class="text-center thank-you">¡Gracias por participar y hacer que este reconocimiento sea significativo!</p>
+    
+        <!-- Formulario de búsqueda -->
+        <div class="form-container">
+            <form method="GET" class="form-inline text-center">
+                <!-- Campo oculto para mantener el número de documento -->
+                <input type="hidden" name="documento" value="{{ votante.documento }}">
+
+                <label for="buscar_nombre">Buscar Candidato (Nombre o Cargo):</label>
+                <input type="text" name="buscar_nombre" value="{{ nombre_busqueda }}" placeholder="Buscar por nombre o cargo" class="form-control">
+                <button type="submit" class="button primary">Buscar</button>
+            </form>
+        </div>
+    
+        <!-- Contenedor de tabla -->
+        <div class="table-container">
+            <table class="hover stack">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Cargo</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for index, candidato in candidatos_enumerados %}
+                    <tr>
+                        <td style="font-size: 12px;">{{ index }}</td>
+                        <td style="font-size: 12px;">{{ candidato.nombre }}</td>
+                        <td style="font-size: 12px;">{{ candidato.cargo }}</td>
+                        <td style="font-size: 12px;">
+                            <form method="POST" action="{% url 'votar' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="documento" value="{{ votante.documento }}">
+                                <input type="hidden" name="candidato_id" value="{{ candidato.id }}">
+                                <button type="submit" class="buttonDownload">Votar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    
+        {% else %}
+    
+        <!-- Formulario de ingreso -->
+        <div class="form-container grid-x align-center">
+            <form method="GET" class="cell small-12 medium-6">
+                <h1 class="text-center">Votación al Mejor Trabajador del Año</h1>
+        <p>
+            Bienvenido al sistema de votación de LA EMPRESA. Aquí podrá registrar su voto para elegir al mejor trabajador del año.
+        </p>
+        <p>
+            <strong>Recuerde:</strong> 
+            Cada persona solo puede votar una sola vez. Para participar, debe ingresar su número de documento en el formulario correspondiente.
+        </p>
+                <label for="documento">Número de Documento:</label>
+                <input type="text" name="documento" required>
+                <button type="submit" class="button primary expanded">INGRESAR</button>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+    
+    <!-- Importa Foundation JS desde la carpeta static -->
+    <script src="{% static 'js/vendor/jquery.js' %}"></script>
+    <script src="{% static 'js/vendor/what-input.js' %}"></script>
+    <script>
+        $(document).foundation();
+    </script>
+    </body>
+</html>

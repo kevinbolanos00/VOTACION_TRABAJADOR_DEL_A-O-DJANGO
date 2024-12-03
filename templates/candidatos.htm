@@ -1,0 +1,6 @@
+<h1>Lista de Candidatos</h1>
+<ul>
+    {% for candidato in candidatos %}
+    <li>{{ candidato.nombre }} - {{ candidato.cargo }}</li>
+    {% endfor %}
+</ul>
