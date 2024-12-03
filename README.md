@@ -62,7 +62,6 @@ Ejecute este comando solo una vez. Si lo ejecuta más de una vez, los trabajador
 - El personal elegible para votar y/o ser candidato se actualiza automáticamente al cargar los datos.
 
 
---------*******
-desarrollado con Python utilizando el framework Django, está diseñado para gestionar un proceso de votación al mejor trabajador del año en una empresa. Permite que los trabajadores activos puedan votar ingresando su número de documento, asegurando un registro único y seguro de votos. Solo los empleados con más de 3 años de antigüedad pueden ser candidatos, mientras que todos los demás pueden participar como votantes. El sistema garantiza transparencia y eficiencia en la votación, respaldado por una base de datos actualizable desde un archivo Excel.
+
 
 
