@@ -35,18 +35,32 @@ Para cargar los datos del archivo `personal2024.xlsx` en la base de datos, siga 
 ⚠️ Nota:
 Ejecute este comando solo una vez. Si lo ejecuta más de una vez, los trabajadores se duplicarán en la base de datos.
 
-Cómo Funciona la Votación
-Validación del Votante:
-Los votantes ingresan su número de documento para verificar que están habilitados para votar.
+## **Funcionamiento de la Votación**
+### **Ingreso del Votante:**
+- Los trabajadores ingresan su número de documento para verificar que están habilitados para votar.
 
-Registro del Voto:
-Cada votante puede registrar su voto una sola vez.
-Los votos se registran automáticamente en la base de datos.
-Archivos Importantes
-personal2024.xlsx: Archivo con la información del personal activo.
-votacion/scripts/cargar_datos.py: Script para cargar los datos de los trabajadores en la base de datos.
-Contribuciones
-Cualquier sugerencia o mejora al sistema es bienvenida. Por favor, crea un pull request o abre un issue en este repositorio.
+### **Restricción de Voto Único:**
+- El sistema permite registrar un voto por persona.
+
+### **Registro Automático:**
+- Los votos quedan registrados automáticamente en la base de datos, asegurando su integridad.
+
+---
+
+## **Estructura del Proyecto**
+- **`personal2024.xlsx`:** Archivo que contiene la información de los trabajadores activos.
+- **`votacion/scripts/cargar_datos.py`:** Script que carga los datos del personal desde el archivo Excel a la base de datos.
+
+---
+
+## **Notas Adicionales**
+- Este sistema está diseñado para garantizar un proceso de votación transparente y eficiente.
+- El personal elegible para votar y/o ser candidato se actualiza automáticamente al cargar los datos.
+
+---
+
+## **Contribuciones**
+- Si deseas colaborar en este proyecto, puedes crear un *pull request* o abrir un *issue* en este repositorio.
 
 
 
