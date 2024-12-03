@@ -57,10 +57,7 @@ Ejecute este comando solo una vez. Si lo ejecuta más de una vez, los trabajador
 - Este sistema está diseñado para garantizar un proceso de votación transparente y eficiente.
 - El personal elegible para votar y/o ser candidato se actualiza automáticamente al cargar los datos.
 
----
 
-## **Contribuciones**
-- Si deseas colaborar en este proyecto, puedes crear un *pull request* o abrir un *issue* en este repositorio.
 
 
 
